@@ -4,6 +4,7 @@ const path = require('path')
 const multer = require('multer')
 const fs = require('fs')
 const mongoose = require('mongoose')
+require('dotenv')
 
 // Default setup
 app.set('view engine', 'ejs')
@@ -24,7 +25,8 @@ const storage = multer.diskStorage({
 })
 
 // Mongoose setup
-mongoose.connect('mongodb://localhost:27017/multer-files-uploading', () => console.log('Database connected!'))
+let dbUrl = 'mongodb+srv://jedezese04:0850790410mn@multer-files-upload.lpck7.mongodb.net/multer-files-uploading?retryWrites=true&w=majority'
+mongoose.connect(dbUrl, () => console.log('Database connected!'))
 
 // Mongoose Schema
 let imageSchema = mongoose.Schema({
@@ -80,4 +82,6 @@ app.get('/delete/:name', (req, res) => {
     res.redirect('/')
 })
 
-app.listen(3000, () => console.log("Server is running on http://localhost:3000"))
+let port = process.env.PORT || 3000
+
+app.listen(port, () => console.log("Server is running on http://localhost:3000"))
