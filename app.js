@@ -82,7 +82,5 @@ app.get('/delete/:name', (req, res) => {
     res.redirect('/')
 })
 
-console.log("Database_URL", process.env.DATABASE_URL)
-
 let port = process.env.PORT || 3000
 app.listen(port, () => console.log("Server is running on port " + port))
