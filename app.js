@@ -37,9 +37,10 @@ let Image = mongoose.model('images', imageSchema)
 // Router
 // '/'
 app.get('/', (req, res) => {
-    Image.find().sort({_id: -1}).exec((err, result) => {
-        res.render('index', {images: result})
-    })
+    res.send('Test')
+    // Image.find().sort({_id: -1}).exec((err, result) => {
+    //     res.render('index', {images: result})
+    // })
 })
 
 // '/add'
