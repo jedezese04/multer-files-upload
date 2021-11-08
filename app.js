@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 
 // Mongoose setup
 let dbUrl = 'mongodb+srv://jedezese04:0850790410mn@multer-files-upload.lpck7.mongodb.net/multer-files-uploading?retryWrites=true&w=majority'
-mongoose.connect(process.env.MONGODB_URI, () => console.log('Database connected!'))
+mongoose.connect(process.env.MONGODB_URL, () => console.log('Database connected!'))
 
 // Mongoose Schema
 let imageSchema = mongoose.Schema({
@@ -37,6 +37,7 @@ let Image = mongoose.model('images', imageSchema)
 // Router
 // '/'
 app.get('/', (req, res) => {
+    console.log("Database_URL", process.env.MONGODB_URL);
     Image.find().sort({_id: -1}).exec((err, result) => {
         res.render('index', {images: result})
     })
